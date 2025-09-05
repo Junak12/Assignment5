@@ -1,14 +1,13 @@
 let history = [];
-
-
-
 function callToHelpline(id, serviceName, number) {
     document.getElementById(id).addEventListener('click', function() {
         let amount = parseInt(document.getElementById('coinChange').innerText);
+
         if (amount < 20) {
             alert('Insufficient Balance! Please Recharge');
             return;
         }
+
         amount -= 20;
         document.getElementById('coinChange').innerText = amount;
         let res = `${serviceName} Service (${number})`
@@ -24,12 +23,10 @@ function callToHelpline(id, serviceName, number) {
             res2: number,
             today : today,
         }
-        history.push(obj);
-        //console.log(history);
-        
+
+        history.push(obj); 
         alert("Calling " + res);
         updateHistory();
-        //alert(`Calling ${serviceName} Service (${number})`);
     });
 }
 
@@ -38,13 +35,14 @@ function updateHistory() {
     element.innerHTML = '';
     history.reverse();
     for (let item of history) {
-        element.innerHTML += `<div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-[16px]">${item.res1}</p>
-                        <p class="mt-[2px] text-gray-500">${item.res2}</p>
-                    </div>
-                    <p class="text-[12px] text-gray-500">${item.today}</p>
-                </div>`
+        element.innerHTML += `
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-[16px]">${item.res1}</p>
+                <p class="mt-[2px] text-gray-500">${item.res2}</p>
+            </div>
+            <p class="text-[12px] text-gray-500">${item.today}</p>
+        </div>`
     }
 }
 
